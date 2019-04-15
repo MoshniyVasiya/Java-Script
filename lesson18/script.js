@@ -2,9 +2,9 @@
 
 
 // #1
-var a = 1;
+var a = '1';
 
-if(a == 1){ 
+if(a === '1'){ 
     console.log('Верно');
 }else{  
     console.log('Неверно');
@@ -20,7 +20,7 @@ if(item != true){
     console.log('Неверно');
 }
 
-var message = (item == true) ? 'Неверно' : 'Верно';
+var message = (item != true) ? 'Верно' : 'Неверно' ;
 console.log(message);
 
 

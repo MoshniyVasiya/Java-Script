@@ -3,11 +3,12 @@
 
 // #1
 
-function isNumberRange(num1){   
-    var a = num1 > 0 && num1 < 10 ;
-    console.log(a);
+function isNumberInRange(num1){   
+
+    return num1 > 0 && num1 < 10 ;  
+
 }
-isNumberRange(9);
+console.log(isNumberInRange(10) );
 
 // #2
 /*
@@ -25,11 +26,11 @@ console.log(isEven(-2));
 */
 
 function isEven(i){ 
-    var i;
-    return (i%2 == 0) || false;
+
+    return (i%2 == 0);
 
 }
-console.log(isEven(61));
+console.log(isEven(60));
 
 
 

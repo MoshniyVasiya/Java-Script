@@ -44,14 +44,15 @@ console.log(arr2);
 
 
 // #4
-
-var counter = 0;
 var obj = {html:'HTML', css: 'CSS', js: 'ECMA'};
-for(var key in obj){    
-    console.log('Key:' + key)
-    counter++ ;
+function arrTransform(obj){
+    for(var key in obj){    
+        arr[i] = key;
+        i++;
+    }
+return arr;
 }
-console.log(counter);
+console.log(arrTransform(obj));
 
 
 // #5

@@ -12,21 +12,17 @@
 
 // # 1
 
-var today = new Date();
-var tommorow = new Date(2019, 3, 26);
-
-var result = (tommorow - today) / 60000;
+var now = new Date();
     
-console.log('До конца дня осталось - ' + result.toFixed(2) + ' минут.');
+console.log('До конца дня осталось - ' + (24 * 60 - ((now.getHours() * 60) + now.getMinutes()) ) + ' минут.');
 
 // # 2 
 
-var todayStart = new Date(2019, 3, 25);
 var todayCurrent = new Date();
     
-var result1 = (todayCurrent - todayStart) / 1000;
+var result1 = todayCurrent.getHours() * 3600 + todayCurrent.getMinutes() * 60 + todayCurrent.getSeconds()
         
-console.log( result1.toFixed() + ' - Cекунд прошло с начала текущего дня.');
+console.log( result1 + ' - Cекунд прошло с начала текущего дня.');
 
 // # 3
 
@@ -64,18 +60,23 @@ console.log( day.toLocaleString( 'ru', {weekday:'long'}) );
 
 // # 4
 
-
+function getBirthday()
+{
 var age = prompt('Введите дату своего рождения в формате ГГГГ-ММ-ДД', '1990-10-01');
-var birthDate = new Date(age);
-var now = new Date();
-var presentDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-var dateOfBirth = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-var result = Math.round((dateOfBirth - presentDay) / 3600000 / 24);
-if( result >= 1 ) { 
-    alert('До вашего дня рождения осталось ' + result + ' дня(ей)!');
-}else if( result === 0 ) {    
-    alert('С днем рождения !!!');
+var today = new Date();
+var birthObj = age.split('-');
+if(birthObj.length != 3 || birthObj[1] > 12 || birthObj[2] > 31 || birthObj[0] > (new Date().getFullYear())){
+    alert(`Дата рождения введена неверно!`);
 }else{  
-    var nextYear = 365 + result;
-    alert('До вашего дня рождения осталось ' + nextYear + ' дня(ей)!');
-}    
+    var birthDay = new Date(today.getFullYear(), +birthObj[1] - 1, +birthObj[2]);
+    var days = Math.trunc((birthDay - today) / 1000 / 3600 / 24);
+    if ( days < 0 ){
+        birthDay.setFullYear(today.getFullYear() + 1);
+        days = Math.trunc((birthDay - today) / 1000 / 3600 / 24) + 1;
+    }else if(+days == 0){   
+        alert(`Сегодня ваш день рождения!`);
+        return;
+    }
+    alert('До вашего дня рождения осталось ' + days + ' дня(ей)' );
+}}
+getBirthday();
